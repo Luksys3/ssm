@@ -1,0 +1,2 @@
+# ssm
+Simple SSH manager
