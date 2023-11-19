@@ -25,14 +25,6 @@ go install
   - `name`: Name of the server (required).
   - `environment`: The environment to connect to (optional).
 
-#### Connect to a Server
-
-- **Command**: `ssm connect [name] [environment]`
-- **Usage**: Initiates an SSH session to a specified server.
-- **Arguments**:
-  - `name`: Name of the server (required).
-  - `environment`: The environment to connect to (optional).
-
 #### Edit Server Configuration
 
 - **Command**: `ssm gedit`
