@@ -1,7 +1,6 @@
 package prompt
 
 import (
-	"sort"
 	"strings"
 
 	"github.com/Luksys3/ssm/internal/config"
@@ -9,7 +8,7 @@ import (
 )
 
 func makeServerLabel(server *config.Server) string {
-	return (*server).Name + " " + strings.ToUpper((*server).Environment)
+	return strings.ToUpper((*server).Environment) + "  " + (*server).Name
 }
 
 func SelectServer(label string, givenServers *[]config.Server) (*config.Server, error) {
@@ -17,10 +16,6 @@ func SelectServer(label string, givenServers *[]config.Server) (*config.Server, 
 	for i := range *givenServers {
 		servers[i] = &(*givenServers)[i]
 	}
-
-	sort.Slice(servers[:], func(a int, b int) bool {
-		return makeServerLabel(servers[a]) < makeServerLabel(servers[b])
-	})
 
 	options := make([]string, len(servers))
 	for i, server := range servers {
@@ -30,6 +25,7 @@ func SelectServer(label string, givenServers *[]config.Server) (*config.Server, 
 	prompt := promptui.Select{
 		Label: label,
 		Items: options,
+		Size:  30,
 	}
 
 	selectedIndex, _, err := prompt.Run()

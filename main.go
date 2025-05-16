@@ -23,6 +23,12 @@ func connect(server *config.Server) error {
 	cmd.Stdin = os.Stdin
 	cmd.Stderr = os.Stderr
 	cmdErr := cmd.Run()
+
+	profileErr := terminal.UpdateProfile("default")
+	if profileErr != nil {
+		return profileErr
+	}
+
 	if cmdErr != nil {
 		return cmdErr
 	}
